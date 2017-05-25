@@ -1,0 +1,29 @@
+/* Enter a unique ExecutionPlan */
+@Plan:name('StreamExecutionPlan')
+/* Enter a unique description for ExecutionPlan */
+-- @Plan:description('ExecutionPlan')
+/* define streams/tables and write queries here ... */
+@Import('org.wso2.android.agent.Stream:1.0.0')
+define stream InputStream (deviceIdentifier string, payload string, type string);
+@Export('org.wso2.android.agent.svm:1.0.0')
+define stream OutputStream (deviceIdentifier string, isDoorOpened bool, isLackOf50Cent bool, isLackOf100Cent bool, isSoldOut bool, isVMCDisconnected bool, User int, System int, IOW int, IRQ int, availMem int, totalMem int, lowMemory bool, threshold int);
+define stream TempStream(deviceIdentifier string, payload object, type string);
+FROM InputStream
+SELECT deviceIdentifier, map:createFromJSON(payload) as payload, type
+INSERT INTO TempStream;
+FROM TempStream[type == 'SVM_STATE']
+SELECT deviceIdentifier,
+    cast(map:get(payload, 'isDoorOpened'),'bool') as isDoorOpened,
+    cast(map:get(payload, 'isLackOf50Cent'),'bool') as isLackOf50Cent,
+    cast(map:get(payload, 'isLackOf100Cent'),'bool') as isLackOf100Cent,
+    cast(map:get(payload, 'isSoldOut'),'bool') as isSoldOut,
+    cast(map:get(payload, 'isVMCDisconnected'),'bool') as isVMCDisconnected,
+    cast(map:get(payload, 'User'),'int') as User,
+    cast(map:get(payload, 'System'),'int') as System,
+    cast(map:get(payload, 'IOW'),'int') as IOW,
+    cast(map:get(payload, 'IRQ'),'int') as IRQ,
+    cast(map:get(payload, 'availMem'),'int') as availMem,
+    cast(map:get(payload, 'totalMem'),'int') as totalMem,
+    cast(map:get(payload, 'lowMemory'),'bool') as lowMemory,
+    cast(map:get(payload, 'threshold'),'int') as threshold
+INSERT INTO OutputStream;

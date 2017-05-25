@@ -1,0 +1,1 @@
+{"provider-conf" : {"streamName" : "org.wso2.android.agent.cpu:1.0.0", "provider-name" : "realtime"}, "chart-conf" : {"x" : "TIMESTAMP", "xType" : "default", "y" : "cpu", "yType" : "default", "color" : "deviceIdentifier", "maxLength" : "100", "gadget-name" : "cpu", "chart-name" : "line-chart"}}

@@ -1,0 +1,9 @@
+{
+    "id": "cpu",
+    "title": "cpu",
+    "type": "gadget",
+    "thumbnail": "gadget/cpu/thumbnail.png",
+    "data": {
+        "url": "gadget/cpu/gadget.xml"
+    }
+}

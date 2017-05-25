@@ -1,0 +1,22 @@
+/* Enter a unique ExecutionPlan */
+@Plan:name('SvmExecutionPlan')
+/* Enter a unique description for ExecutionPlan */
+-- @Plan:description('ExecutionPlan')
+/* define streams/tables and write queries here ... */
+@Import('org.wso2.android.agent.svm:1.0.0')
+define stream SvmStream (deviceIdentifier string, isDoorOpened bool, isLackOf50Cent bool, isLackOf100Cent bool, isSoldOut bool, isVMCDisconnected bool, User int, System int, IOW int, IRQ int, availMem int, totalMem int, lowMemory bool, threshold int);
+@Export('org.wso2.android.agent.waning:1.0.0')
+define stream WarningStream (deviceIdentifier string, isDoorOpened bool, isLackOf50Cent bool, isLackOf100Cent bool, isSoldOut bool, isVMCDisconnected bool);
+@Export('org.wso2.android.agent.cpu:1.0.0')
+define stream CpuStream (deviceIdentifier string, cpu double);
+@Export('org.wso2.android.agent.mem:1.0.0')
+define stream MemStream (deviceIdentifier string, mem double);
+FROM SvmStream[(isDoorOpened == true) or (isLackOf50Cent == true) or (isLackOf100Cent == true) or (isSoldOut == true) or (isVMCDisconnected == true)]
+SELECT deviceIdentifier, isDoorOpened, isLackOf50Cent, isLackOf100Cent, isSoldOut, isVMCDisconnected
+INSERT INTO WarningStream;
+FROM SvmStream
+SELECT deviceIdentifier, cast(User + System + IOW + IRQ, 'double') as cpu
+INSERT INTO CpuStream;
+FROM SvmStream
+SELECT deviceIdentifier, 100 * cast(availMem, 'double') / cast(totalMem, 'double') as mem
+INSERT INTO MemStream;

@@ -1,0 +1,1 @@
+{"provider-conf" : {"streamName" : "org.wso2.android.agent.mem:1.0.0", "provider-name" : "realtime"}, "chart-conf" : {"x" : "TIMESTAMP", "xType" : "default", "y" : "mem", "yType" : "default", "color" : "deviceIdentifier", "maxLength" : "100", "gadget-name" : "mem", "chart-name" : "line-chart"}}

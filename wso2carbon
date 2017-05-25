@@ -1,0 +1,42 @@
+#!/bin/bash
+source config.ini
+
+export JAVA_HOME="/usr/local/jdk"
+export WSO2IOT_HOME="${root_dir}/wso2iot"
+export WSO2DAS_HOME="${root_dir}/wso2das"
+
+broker_startcmd="$WSO2IOT_HOME/broker/bin/wso2server.sh start > /dev/null &"
+broker_stopcmd="$WSO2IOT_HOME/broker/bin/wso2server.sh stop > /dev/null &"
+broker_restartcmd="$WSO2IOT_HOME/broker/bin/wso2server.sh restart > /dev/null &"
+
+core_startcmd="$WSO2IOT_HOME/core/bin/wso2server.sh start > /dev/null &"
+core_stopcmd="$WSO2IOT_HOME/core/bin/wso2server.sh stop > /dev/null &"
+core_restartcmd="$WSO2IOT_HOME/core/bin/wso2server.sh restart > /dev/null &"
+
+analytics_startcmd="$WSO2DAS_HOME/bin/wso2server.sh start > /dev/null &"
+analytics_stopcmd="$WSO2DAS_HOME/bin/wso2server.sh stop > /dev/null &"
+analytics_restartcmd="$WSO2DAS_HOME/bin/wso2server.sh restart > /dev/null &"
+
+case "$1" in
+start)
+	echo "Starting Service"
+	$broker_startcmd
+    $core_startcmd
+    $analytics_startcmd
+;;
+stop)
+	echo "Stopping Serivce"
+	$broker_stopcmd
+	$core_stopcmd
+	$analytics_stopcmd
+;;
+restart)
+	echo "Restarting Service"
+	$broker_restartcmd
+    $core_restartcmd
+    $analytics_restartcmd
+;;
+*)
+	echo "Usage: $0 {start|stop|restart}"
+exit 1
+esac

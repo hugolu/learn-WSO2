@@ -1,0 +1,64 @@
+{
+  "name": "org.wso2.android.agent.svm",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "payloadData": [
+    {
+      "name": "deviceIdentifier",
+      "type": "STRING"
+    },
+    {
+      "name": "isDoorOpened",
+      "type": "BOOL"
+    },
+    {
+      "name": "isLackOf50Cent",
+      "type": "BOOL"
+    },
+    {
+      "name": "isLackOf100Cent",
+      "type": "BOOL"
+    },
+    {
+      "name": "isSoldOut",
+      "type": "BOOL"
+    },
+    {
+      "name": "isVMCDisconnected",
+      "type": "BOOL"
+    },
+    {
+      "name": "User",
+      "type": "INT"
+    },
+    {
+      "name": "System",
+      "type": "INT"
+    },
+    {
+      "name": "IOW",
+      "type": "INT"
+    },
+    {
+      "name": "IRQ",
+      "type": "INT"
+    },
+    {
+      "name": "availMem",
+      "type": "INT"
+    },
+    {
+      "name": "totalMem",
+      "type": "INT"
+    },
+    {
+      "name": "lowMemory",
+      "type": "BOOL"
+    },
+    {
+      "name": "threshold",
+      "type": "INT"
+    }
+  ]
+}

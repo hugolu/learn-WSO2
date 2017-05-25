@@ -1,0 +1,16 @@
+{
+  "name": "org.wso2.android.agent.mem",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "payloadData": [
+    {
+      "name": "deviceIdentifier",
+      "type": "STRING"
+    },
+    {
+      "name": "mem",
+      "type": "DOUBLE"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "org.wso2.android.agent.waning",
+  "version": "1.0.0",
+  "nickName": "",
+  "description": "",
+  "payloadData": [
+    {
+      "name": "deviceIdentifier",
+      "type": "STRING"
+    },
+    {
+      "name": "isDoorOpened",
+      "type": "BOOL"
+    },
+    {
+      "name": "isLackOf50Cent",
+      "type": "BOOL"
+    },
+    {
+      "name": "isLackOf100Cent",
+      "type": "BOOL"
+    },
+    {
+      "name": "isSoldOut",
+      "type": "BOOL"
+    },
+    {
+      "name": "isVMCDisconnected",
+      "type": "BOOL"
+    }
+  ]
+}

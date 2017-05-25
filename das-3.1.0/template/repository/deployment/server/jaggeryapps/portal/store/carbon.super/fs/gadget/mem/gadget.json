@@ -1,0 +1,9 @@
+{
+    "id": "mem",
+    "title": "mem",
+    "type": "gadget",
+    "thumbnail": "gadget/mem/thumbnail.png",
+    "data": {
+        "url": "gadget/mem/gadget.xml"
+    }
+}
